@@ -1,21 +1,43 @@
-import { RecoilRoot } from 'recoil'
+import { useEffect } from 'react'
+import { RecoilRoot, useRecoilState } from 'recoil'
+import { reactLocalStorage } from 'reactjs-localstorage'
 import Header from '../src/components/Header'
+import userStore from '../src/stores/user'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
+  const [user, setUser] = useRecoilState(userStore.user)
+
+  const checkUserLogin = () => {
+    const userLocal = reactLocalStorage.getObject('user')
+    if (userLocal.isLogin === true) {
+      setUser(userLocal)
+    }
+  }
+
+  useEffect(() => {
+    checkUserLogin()
+  }, [])
+
+  return (
+    <div>
+      <Header />
+      <div className="max-w-7xl mx-auto p-5 min-h-screen page">
+        <Component {...pageProps} />
+      </div>
+      <div className="bg-gray-400" style={{ height: 120 }}>
+        
+      </div>
+    </div>
+  )
+}
+
+function App({ Component, pageProps }) {
   return (
     <RecoilRoot>
-      <div>
-        <Header />
-        <div className="max-w-7xl mx-auto p-5 min-h-screen page">
-          <Component {...pageProps} />
-        </div>
-        <div className="bg-gray-400" style={{ height: 120 }}>
-          
-        </div>
-      </div>
+      <MyApp Component={Component} pageProps={pageProps} />
     </RecoilRoot>
   )
 }
 
-export default MyApp
+export default App
