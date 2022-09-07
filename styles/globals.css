@@ -28,3 +28,7 @@ a {
     background: black;
   }
 }
+
+.page {
+  min-height: calc(100vh - 168px);
+}

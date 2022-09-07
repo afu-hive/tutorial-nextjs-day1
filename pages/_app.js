@@ -5,9 +5,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <Header />
-      <Component {...pageProps} />
-      <div style={{ padding: '20px 0', width: '100%', backgroundColor: '#ccc' }}>
-        FOOTER
+      <div className="max-w-7xl mx-auto p-5 min-h-screen page">
+        <Component {...pageProps} />
+      </div>
+      <div className="bg-gray-400" style={{ height: 120 }}>
+        
       </div>
     </div>
   )

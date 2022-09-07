@@ -1,17 +1,40 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import Product from '../../src/components/Product'
 
-const productList = []
-for (let i = 0; i < 100; i++) {
-  productList.push({ name: `product-${i}`, id: i })
-}
-
 const index = () => {
+  const [products, setProducts] = useState([])
+  // component mount ให้ทำอะไร
+  // component unmount ให้ทำอะไร
+  // component state X change ให้ทำอะไร
+
+  const getProducts = () => {
+    axios.get('https://jsonplaceholder.typicode.com/photos').then((data) => {
+      setProducts(data.data)
+    }).catch((e) => {
+      console.log('e:', e)
+    })
+  }
+
+  useEffect(() => {
+    getProducts()
+
+    return () => {
+      console.log('unmount')
+    }
+  }, [])
+
   return (
     <div>
       <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4">
-        {productList.map(({ name, id }) => (
-          <Product key={id} name={name} />
+        {products.map(({ title, id, thumbnailUrl, url }) => (
+          <Product
+            key={id}
+            name={title}
+            thumbnailUrl={thumbnailUrl}
+            url={url}
+            id={id}
+          />
         ))}
       </div>
     </div>
