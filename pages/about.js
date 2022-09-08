@@ -7,11 +7,8 @@ const about = () => {
   const [user, setUser] = useRecoilState(userStore.user)
 
   return (
-    <div>
-      <div>
-        {user.firstName}
-        {user.lastName}
-      </div>
+    <div className="flex flex-col justify-center items-center">
+      <div className="py-4">{user.username}</div>
       <img width={300} height={300} src="/images/bg.jpeg" />
       <div className="my-2">
         <Button

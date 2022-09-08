@@ -6,6 +6,7 @@ const Input = ({
   error,
   type = "text",
   onChange,
+  value,
 }) => {
   return (
     <div className="text-md sm:w-6/12 w-full">
@@ -18,6 +19,7 @@ const Input = ({
           type={type}
           onChange={onChange}
           placeholder={placeholder}
+          value={value}
         />
       </div>
       <p class="text-red-500 text-xs italic mt-1 ml-2">

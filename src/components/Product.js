@@ -6,6 +6,7 @@ const Product = ({
   thumbnailUrl,
   url,
   id,
+  price,
 }) => {
   const router = useRouter()
   const openProduct = () => {
@@ -14,10 +15,16 @@ const Product = ({
 
   return (
     <div onClick={openProduct} class="cursor-pointer max-w-sm rounded overflow-hidden shadow-lg">
-      <img class="w-full" src={thumbnailUrl} />
+      <div className="h-48 bg-gray-200 m-auto flex flex-col justify-center items-center">
+        <img class="object-cover w-full" src={thumbnailUrl} />
+      </div>
       <div class="px-6 py-4">
-        <p class="text-gray-700 text-base">
+        <p class="text-gray-700 text-base font-medium">
           {name}
+        </p>
+        <div className="h-1" />
+        <p class="text-gray-700 font-normal text-xs">
+          {price} ฿
         </p>
       </div>
     </div>

@@ -46,6 +46,7 @@ const Header = () => {
           <LinkButton closeDrawer={closeDrawer} text="Home" link="/" />
           <LinkButton closeDrawer={closeDrawer} text="About" link="/about" />
           <LinkButton closeDrawer={closeDrawer} text="Products" link="/products" />
+          <LinkButton closeDrawer={closeDrawer} text="Create-Product" link="/create-product" />
         </div>
       </Drawer>
       <nav className="bg-gray-800 py-3 px-2">
@@ -58,6 +59,7 @@ const Header = () => {
               <Link text="Home" link="/" />
               <Link text="About" link="/about" />
               <Link text="Products" link="/products" />
+              <Link text="Create-Product" link="/create-product" />
             </div>
           </div>
         </div>
