@@ -7,7 +7,7 @@ import userStore from '../src/stores/user'
 import Button from '../src/components/Button'
 import Input from '../src/components/Input'
 import validateEmail from '../src/functions/validateEmail'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import firebaseApp, { auth } from '../src/firebase'
 
 const index = () => {
@@ -40,6 +40,11 @@ const index = () => {
       didOpen: () => { Swal.showLoading() },
     })
     signInWithEmailAndPassword(auth, username, password).then((user) => {
+      // signInWithCustomToken(auth, accessToken).then(() => {
+      //   console.log('success')
+      // }).catch((e) => {
+      //   console.log('e:', e)
+      // })
       Swal.fire({
         icon: 'success',
         title: `Hi ${username}`,
@@ -81,7 +86,15 @@ const index = () => {
 
   const onSignOut = () => {
     setUser({})
-    reactLocalStorage.setObject('user', {})
+    signOut(auth).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Signout Success',
+      })
+    }).catch((e) => {
+      console.log('fail signout e:', e)
+    })
+    // reactLocalStorage.setObject('user', {})
   }
 
   const onChange = (fieldName) => (e) => {
@@ -107,6 +120,16 @@ const index = () => {
 
       createUserWithEmailAndPassword(auth, singUpFields.email, singUpFields.password)
         .then((user) => {
+          setUser({
+            age: 0,
+            firstName: user.user.email,
+            lastName: user.user.email,
+            isLogin: true,
+            sex: '-',
+            username: user.user.email,
+            uid: user.user.uid,
+          })
+          setIsOpenSignUp(false)
           Swal.fire({
             icon: 'success',
             title: 'create user success',
@@ -214,7 +237,7 @@ const index = () => {
   return (
     <div>
       {user.isLogin ? (
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <pre>{JSON.stringify(user, null, 2)}</pre>
           <div className='mt-5'>
             <Button text="Signout" color="red" onClick={onSignOut} />

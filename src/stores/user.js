@@ -9,6 +9,7 @@ const user = atom({
     lastName: '',
     age: -1,
     sex: '', // male, female
+    uid: '',
   },
 })
 
