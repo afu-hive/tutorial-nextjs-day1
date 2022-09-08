@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil'
 import userStore from '../src/stores/user'
 import Button from '../src/components/Button'
 
-const about = () => {
+const About = () => {
   const [user, setUser] = useRecoilState(userStore.user)
 
   return (
@@ -35,4 +35,4 @@ const about = () => {
   )
 }
 
-export default about
+export default About

@@ -22,7 +22,7 @@ const Input = ({
           value={value}
         />
       </div>
-      <p class="text-red-500 text-xs italic mt-1 ml-2">
+      <p className="text-red-500 text-xs italic mt-1 ml-2">
         {error}
       </p>
     </div>

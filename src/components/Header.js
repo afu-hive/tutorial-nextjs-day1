@@ -50,7 +50,7 @@ const Header = () => {
         </div>
       </Drawer>
       <nav className="bg-gray-800 py-3 px-2">
-        <div class="max-w-7xl text-white mx-auto">
+        <div className="max-w-7xl text-white mx-auto">
           <div onClick={openDrawer} className="sm:hidden block cursor-pointer">
             <GiHamburgerMenu size={32} color="white" />
           </div>

@@ -42,7 +42,7 @@ const Product = () => {
           <p className="text-gray-600 mb-5">{product.name}</p>
           <div className="text-gray-600 font-bold">price:</div>
           <p className="text-gray-600 mb-5">{product.price}</p>
-          <div class="bg-gray-200 rounded-lg">
+          <div className="bg-gray-200 rounded-lg">
             <img className="mx-auto object-fill w-8/12" src={getImage(product.id)} />
           </div>
         </>

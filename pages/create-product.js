@@ -110,7 +110,7 @@ const CreateProduct = () => {
         {file ? file.name : 'Upload Image'}
       </label>
       {isShowError && !file && (
-        <p class="text-red-500 text-xs italic mt-1">
+        <p className="text-red-500 text-xs italic mt-1">
           please fill file
         </p>
       )}

@@ -14,16 +14,16 @@ const Product = ({
   }
 
   return (
-    <div onClick={openProduct} class="cursor-pointer max-w-sm rounded overflow-hidden shadow-lg">
+    <div onClick={openProduct} className="cursor-pointer max-w-sm rounded overflow-hidden shadow-lg">
       <div className="h-48 bg-gray-200 m-auto flex flex-col justify-center items-center">
-        <img class="object-cover w-full" src={thumbnailUrl} />
+        <img className="object-cover w-full" src={thumbnailUrl} />
       </div>
-      <div class="px-6 py-4">
-        <p class="text-gray-700 text-base font-medium">
+      <div className="px-6 py-4">
+        <p className="text-gray-700 text-base font-medium">
           {name}
         </p>
         <div className="h-1" />
-        <p class="text-gray-700 font-normal text-xs">
+        <p className="text-gray-700 font-normal text-xs">
           {price} ฿
         </p>
       </div>

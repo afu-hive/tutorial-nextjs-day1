@@ -5,7 +5,7 @@ import Product from '../../src/components/Product'
 import { db } from '../../src/firebase'
 import getImage from '../../src/functions/getImage'
 
-const index = () => {
+const SingleProduct = () => {
   const [products, setProducts] = useState([])
   // component mount ให้ทำอะไร
   // component unmount ให้ทำอะไร
@@ -51,4 +51,4 @@ const index = () => {
   )
 }
 
-export default index
+export default SingleProduct
