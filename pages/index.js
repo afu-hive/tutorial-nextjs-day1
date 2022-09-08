@@ -7,6 +7,8 @@ import userStore from '../src/stores/user'
 import Button from '../src/components/Button'
 import Input from '../src/components/Input'
 import validateEmail from '../src/functions/validateEmail'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import firebaseApp, { auth } from '../src/firebase'
 
 const index = () => {
   const [username, setUsername] = useState('')
@@ -33,27 +35,44 @@ const index = () => {
   }
 
   const onSignIn = () => {
-    const correctUser = users.find((user) => {
-      if (user.username === username && user.password === password) {
-        return true        
-      }
-      return false
+    Swal.fire({
+      title: 'signin a user...',
+      didOpen: () => { Swal.showLoading() },
     })
+    signInWithEmailAndPassword(auth, username, password).then((user) => {
+      Swal.fire({
+        icon: 'success',
+        title: `Hi ${username}`,
+      })
+    }).catch((e) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong',
+        text: e.code,
+      })
+      console.log('signin fail e:', e)
+    })
+    // const correctUser = users.find((user) => {
+    //   if (user.username === username && user.password === password) {
+    //     return true        
+    //   }
+    //   return false
+    // })
 
-    if (correctUser) {
-      const userData = {
-        isLogin: true,
-        firstName: correctUser.firstName,
-        lastName: correctUser.lastName,
-        age: correctUser.age,
-        sex: correctUser.sex,
-        username: correctUser.username,
-      }
-      setUser(userData) // global state
-      reactLocalStorage.setObject('user', userData) // local storeage
-    } else [
-      alert('sign in fail')
-    ]
+    // if (correctUser) {
+    //   const userData = {
+    //     isLogin: true,
+    //     firstName: correctUser.firstName,
+    //     lastName: correctUser.lastName,
+    //     age: correctUser.age,
+    //     sex: correctUser.sex,
+    //     username: correctUser.username,
+    //   }
+    //   setUser(userData) // global state
+    //   reactLocalStorage.setObject('user', userData) // local storeage
+    // } else [
+    //   alert('sign in fail')
+    // ]
   }
 
   const onSignUp = () => {
@@ -81,6 +100,29 @@ const index = () => {
       checkError('confirm-password', true) === ''
     ) {
       // create user in firebase
+      Swal.fire({
+        title: 'creating a user...',
+        didOpen: () => { Swal.showLoading() },
+      })
+
+      createUserWithEmailAndPassword(auth, singUpFields.email, singUpFields.password)
+        .then((user) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'create user success',
+            text: `Hello ${singUpFields.email}`,
+          })
+          console.log('success :', user)
+        })
+        .catch((e) => {
+          console.log('e.customData:', e.customData)
+          Swal.fire({
+            icon: 'error',
+            title: 'create user fail',
+            text: e.customData._tokenResponse.error.message,
+          })
+          console.log('fail :', e)
+        })
     } else {
       Swal.fire({
         icon: 'error',
