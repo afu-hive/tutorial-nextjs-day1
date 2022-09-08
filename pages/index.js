@@ -203,6 +203,11 @@ const Home = () => {
 
   if (isOpenSingUp) return (
     <div className="flex flex-col justify-center items-center">
+      <h1 className="text-center font-medium mb-10">
+        who read this that mean.
+        you are one step closer to success,
+        by Afu.
+      </h1>
       <Input
         label="Email"
         placeholder="please type email"
@@ -236,6 +241,11 @@ const Home = () => {
 
   return (
     <div>
+      <h1 className="text-center font-medium mb-10">
+        who read this that mean.
+        you are one step closer to success,
+        by Afu.
+      </h1>
       {user.isLogin ? (
         <div className="flex flex-col justify-center items-center">
           <pre>{JSON.stringify(user, null, 2)}</pre>
