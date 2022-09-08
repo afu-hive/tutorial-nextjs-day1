@@ -16,7 +16,8 @@
     "react-icons": "^4.4.0",
     "react-modern-drawer": "^1.1.2",
     "reactjs-localstorage": "^1.0.1",
-    "recoil": "^0.7.5"
+    "recoil": "^0.7.5",
+    "sweetalert2": "^11.4.32"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
