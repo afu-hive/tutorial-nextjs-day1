@@ -12,7 +12,7 @@ const index = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useRecoilState(userStore.user)
-  const [isOpenSingUp, setIsOpenSignUp] = useState(true)
+  const [isOpenSingUp, setIsOpenSignUp] = useState(false)
   const [singUpFields, setSignUpFields] = useState({
     email: '',
     password: '',
@@ -80,12 +80,14 @@ const index = () => {
       checkError('password', true) === '' &&
       checkError('confirm-password', true) === ''
     ) {
+      // create user in firebase
+    } else {
       Swal.fire({
-        icon: 'success',
-        title: 'signup success',
-        text: 'please try to login our website',
-        confirmButtonColor: '#2ecc71',
-        confirmButtonText: `let's roll`,
+        icon: 'error',
+        title: 'signup fail',
+        text: 'please check your input fields',
+        confirmButtonColor: '#3498db',
+        confirmButtonText: 'ok',
       })
     }
   }
@@ -130,6 +132,10 @@ const index = () => {
     return error
   }
 
+  const back = () => {
+    setIsOpenSignUp(false)
+  }
+
   if (isOpenSingUp) return (
     <div className="flex flex-col justify-center items-center">
       <Input
@@ -157,6 +163,9 @@ const index = () => {
       />
       <div className="h-6" />
       <Button text="sign up" color="green" onClick={createUser} />
+      <div className="text-gray-500 text-xs mt-4">
+        have account? <span className="text-blue-500 hover:text-blue-600 cursor-pointer" onClick={back}>Move to sign in page</span>
+      </div>
     </div>
   )
 
@@ -171,7 +180,6 @@ const index = () => {
         </div>
       ) : (
       <div className="w-full max-w-xs text-center mx-auto font-bold">
-        <div className="my-4">SIGN-IN</div>
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
